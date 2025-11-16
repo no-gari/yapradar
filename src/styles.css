@@ -1145,7 +1145,7 @@ p {
   }
   
   .leaderboard-item {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr;
     gap: var(--space-md);
   }
   
@@ -1267,6 +1267,10 @@ p {
     padding: var(--space-md);
   }
 
+  .leaderboard-icon {
+    flex-shrink: 0;
+  }
+
   .leaderboard-info {
     flex: 1;
     min-width: 0;
@@ -1341,13 +1345,9 @@ p {
     padding: var(--space-md);
     gap: var(--space-sm);
   }
-  
-  .rank-number {
-    font-size: 1.25rem;
-  }
-  
+
   .leaderboard-rank {
-    min-width: 40px;
+    min-width: 28px;
   }
 
   .leaderboard-main h3 {
@@ -1600,12 +1600,38 @@ button:focus-visible {
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: auto auto 1fr auto auto auto;
   gap: var(--space-lg);
   align-items: center;
   cursor: pointer;
   transition: all var(--transition-base);
   min-width: 0;
+}
+
+.leaderboard-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+}
+
+.leaderboard-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 32px rgba(88, 101, 242, 0.25);
+}
+
+.leaderboard-icon span {
+  font-size: 0.875rem;
 }
 
 .leaderboard-item:hover {
@@ -1615,25 +1641,15 @@ button:focus-visible {
   box-shadow: var(--shadow-sm);
 }
 
-.leaderboard-rank {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 48px;
-}
-
 .rank-number {
-  font-size: 1.5rem;
-  font-weight: 800;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--text-tertiary);
   line-height: 1;
 }
 
 .rank-number.rank-top {
-  background: linear-gradient(135deg, var(--primary), var(--info));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: initial;
+  color: var(--primary);
 }
 
 .leaderboard-info {

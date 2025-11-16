@@ -63,7 +63,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home onViewAnalyze={() => navigate('/analyze')} onSelectProject={handleProjectDetail} />}
+            element={(
+              <Home
+                onViewAnalyze={() => navigate('/analyze')}
+                onViewDraft={() => navigate('/draft')}
+                onSelectProject={handleProjectDetail}
+              />
+            )}
           />
           <Route
             path="/analyze"

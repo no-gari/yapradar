@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { Search, Pencil, TrendingUp, ChevronRight, HelpCircle } from 'lucide-react'
 import { mockCoins } from '../data/mockCoins'
 
-function Home({ onViewAnalyze, onSelectProject }) {
+function Home({ onViewAnalyze, onViewDraft, onSelectProject }) {
   const features = [
     {
       icon: Search,
@@ -16,7 +16,7 @@ function Home({ onViewAnalyze, onSelectProject }) {
       title: 'Yap! Draft',
       description: '나만을 위한 AI 초안 작성',
       detail: '프로젝트와 톤을 선택하면 최적화된 트윗 초안을 자동 생성합니다',
-      action: () => {},
+      action: onViewDraft,
     },
   ]
 
@@ -77,7 +77,17 @@ function Home({ onViewAnalyze, onSelectProject }) {
         </div>
 
         <div className="leaderboard-list">
-          {mockCoins.map((coin, index) => (
+          {mockCoins.map((coin, index) => {
+            const gradientPalette = [
+              'linear-gradient(135deg, rgba(88, 101, 242, 0.9), rgba(14, 165, 233, 0.9))',
+              'linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(13, 148, 136, 0.9))',
+              'linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(249, 115, 22, 0.9))',
+              'linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(244, 114, 182, 0.9))',
+            ]
+            const palette = gradientPalette[index % gradientPalette.length]
+            const initials = coin.symbol.slice(0, 2).toUpperCase()
+
+            return (
             <article
               key={coin.id}
               className="leaderboard-item"
@@ -88,6 +98,9 @@ function Home({ onViewAnalyze, onSelectProject }) {
                   {index + 1}
                 </span>
               </div>
+                <div className="leaderboard-icon" style={{ backgroundImage: palette }}>
+                  <span>{initials}</span>
+                </div>
               
               <div className="leaderboard-info">
                 <div className="leaderboard-main">
@@ -117,7 +130,8 @@ function Home({ onViewAnalyze, onSelectProject }) {
 
               <ChevronRight className="leaderboard-arrow" size={20} />
             </article>
-          ))}
+            )
+          })}
         </div>
       </section>
 
@@ -150,6 +164,7 @@ function Home({ onViewAnalyze, onSelectProject }) {
 
 Home.propTypes = {
   onViewAnalyze: PropTypes.func.isRequired,
+  onViewDraft: PropTypes.func.isRequired,
   onSelectProject: PropTypes.func.isRequired,
 }
 
